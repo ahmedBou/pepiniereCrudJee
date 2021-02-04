@@ -1,0 +1,4 @@
+INDEX VERSION 1.131+C:\Users\Admin\briefJee\.metadata\.plugins\org.eclipse.jdt.core
+3203732139.index
+482422273.index
+3271193799.index

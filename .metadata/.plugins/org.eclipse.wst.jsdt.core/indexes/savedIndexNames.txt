@@ -1,0 +1,5 @@
+INDEX VERSION 1.4+C:\Users\Admin\briefJee\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
+3989817829.index
+4291005694.index
+3413874129.index
+3020443450.index
