@@ -12,6 +12,13 @@ public class Plantes {
 	public Plantes() {
 		super();
 	}
+	public Plantes(long id, String nom, double prix, int quantite) {
+		super();
+		this.id = id;
+		this.nom = nom;
+		this.prix = prix;
+		this.quantite = quantite;
+	}
 
 	public Plantes(String nom, double prix, int quantite) {
 		super();

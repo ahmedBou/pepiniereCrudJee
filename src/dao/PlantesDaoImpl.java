@@ -4,13 +4,14 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
 import metier.entities.Plantes;
 
 public class PlantesDaoImpl implements PlantesDao{
-	// quand on implement une unterface il faut redefinir les methodes
+	// quand on implement une interface il faut redefinir les methodes
 	
 	@Override
 	public Plantes save(Plantes p) {
@@ -72,23 +73,79 @@ public class PlantesDaoImpl implements PlantesDao{
 	}
 
 	@Override
-	public Plantes getProduit(Plantes id) {
+	public Plantes getPlante(Plantes id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
 
-	@Override
-	public Plantes update(Plantes p) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
 
 	@Override
 	public void delete(long id) {
-		// TODO Auto-generated method stub
+Connection connection = SingletonConnection.getConnection();
+		
+		try {
+			PreparedStatement ps = connection.prepareStatement(""
+					+ "delete from plantes where id= ?");
+			ps.setLong(1, id);
+			
+			ps.executeUpdate();
+			
+			ps.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+
+		
 		
 	}
-	
+
+	@Override
+	public ArrayList<Plantes> getPlantes() {
+		ArrayList<Plantes> plantes = new ArrayList<Plantes>();
+		Connection connection = SingletonConnection.getConnection();
+		try {
+			PreparedStatement sp = connection.prepareStatement("select * from plantes");
+			ResultSet rs = sp.executeQuery();
+			while(rs.next()) {
+				int a = rs.getInt(1);
+				String d = rs.getString(2);
+				int c = rs.getInt(3);
+				double b = rs.getDouble(4);
+				Plantes  p = new Plantes(d, b, c);
+				plantes.add(p);	
+			}
+			
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return plantes;
+	}
+
+	@Override
+	public void update(Plantes p) {
+		Connection connection = SingletonConnection.getConnection();
+		PreparedStatement ps;
+		try {
+			ps = connection.prepareStatement(
+					"UPDATE plantes SET nom =? , quantité= ?, prix= ? WHERE id = ?");
+	        
+			ps.setString(1, p.getNom());
+	        ps.setLong(2, p.getQuantite());
+	        ps.setDouble(3, p.getPrix());
+	        ps.setLong(4, p.getId());
+	        ps.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 
 	
 

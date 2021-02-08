@@ -1,5 +1,6 @@
 package dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import metier.entities.Plantes;
@@ -10,9 +11,11 @@ public interface PlantesDao {
 	// search plantes and return list of plantes
 	public List<Plantes> nmPlantes(String nm);
 	// consulter une plantes
-	public Plantes getProduit(Plantes id);
+	public Plantes getPlante(Plantes id);
+	//consulter tous les plantes
+	public ArrayList<Plantes> getPlantes();
 	//modifier une plantes, mettre a jour l'objet plante y compris le id
-	public Plantes update(Plantes p);
+	public void update(Plantes p);
 	//suprimer une plantes
 	public void delete(long id);
 	

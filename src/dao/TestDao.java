@@ -12,6 +12,8 @@ public class TestDao {
 		PlantesDaoImpl dao = new PlantesDaoImpl();
 		Plantes p1 = dao.save(new Plantes("spathiphyllum", 1, 150));
 		Plantes p2 = dao.save(new Plantes("lierre", 1, 120));
+		dao.update(p2);
+		System.out.println("the modification is"+dao.toString());
 		try {
 			System.out.println(p1.toString());
 			
